@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+}
+
+.hovered-div {
+    background: teal;
+}
+
+.container div{
+    flex: 1;
+    /*background: peachpuff;*/
+    border: 2px solid brown;
+    height: 100px;
+}
