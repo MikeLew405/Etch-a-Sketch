@@ -1,5 +1,5 @@
 const GRID_COUNT = 16;
-
+const RGB_MAX_VALUE = 255;
 const body = document.body;
 const btn = document.querySelector('button');
 const container = document.querySelector('.container');
@@ -11,20 +11,6 @@ btn.addEventListener('click', () => {
         }
         generateGrid(input);
 });
-
-// function generateGrid(input = GRID_COUNT) {
-//     for (let i = 0; i < input; i++) {
-//         var row = document.createElement("div");
-//         row.classList.add('row');
-//         for (let j = 0; j < input; j++) {
-//             var column = document.createElement("div");
-//             column.classList.add('column');
-//             row.appendChild(column);
-//         }
-//         container.appendChild(row);
-//     }
-//     addListenerToGrid();    
-// }
 
 function generateGrid(input = GRID_COUNT) {
     for (let i = 0; i < input * input; i++) {
@@ -38,11 +24,18 @@ function generateGrid(input = GRID_COUNT) {
     addListenerToGrid();    
 }
 
+function generateRandomRgbValue() {
+    return Math.floor(Math.random() * RGB_MAX_VALUE);
+}
+
 function addListenerToGrid() {
     const gridDivs = document.querySelectorAll(".square");
     gridDivs.forEach((div) => {
         div.addEventListener("mouseover", () => {
-            div.classList.add("hovered-div");
+            let r = generateRandomRgbValue();
+            let g = generateRandomRgbValue();
+            let b = generateRandomRgbValue();
+            div.style.background = `rgb(${r}, ${g}, ${b})`;
         });
     });
 }
