@@ -1,4 +1,4 @@
-const GRID_COUNT = 4;
+const GRID_COUNT = 16;
 
 const body = document.body;
 const btn = document.querySelector('button');
@@ -30,9 +30,8 @@ function generateGrid(input = GRID_COUNT) {
     for (let i = 0; i < input * input; i++) {
         var square = document.createElement("div");
         square.classList.add('square');
-
-        let containerWidth = container.offsetWidth;
-        square.setAttribute("style", `width: ${containerWidth / input}px; height: ${container.offsetHeight / input}`);
+        square.setAttribute("style", `width: ${(container.offsetWidth / input) - 2}px; 
+        height: ${(container.offsetHeight / input) - 2}px`);
 
         container.appendChild(square);
     }
@@ -40,13 +39,10 @@ function generateGrid(input = GRID_COUNT) {
 }
 
 function addListenerToGrid() {
-    const gridDivs = document.querySelectorAll(".container div > div");
+    const gridDivs = document.querySelectorAll(".square");
     gridDivs.forEach((div) => {
         div.addEventListener("mouseover", () => {
             div.classList.add("hovered-div");
-        });
-        div.addEventListener("mouseout", () => {
-            div.classList.remove("hovered-div");
         });
     });
 }
